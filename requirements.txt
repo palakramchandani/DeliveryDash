@@ -1,0 +1,8 @@
+kafka-python
+psycopg2
+jsonschema
+streamlit
+plotly
+pydeck
+flask
+requests

@@ -1,0 +1,101 @@
+ID,timestamp,source_city,destination_city,current_city,Mode_of_Shipment,Weight_in_gms,carrier,estimated_delivery,delay_reason,Customer_rating,Reached.on.Time_Y.N
+SHP0001,2025-06-14 16:57:53,Delhi,Pune,Bangalore,Delivered,1578,DTDC,2025-06-15 16:57:53,,2,1
+SHP0002,2025-06-15 09:57:53,Mumbai,Jaipur,Chennai,Out for Delivery,3717,FedEx,2025-06-17 09:57:53,Customs Delay,2,0
+SHP0003,2025-06-15 08:57:53,Hyderabad,Surat,Hyderabad,In Transit,3620,BlueDart,2025-06-19 08:57:53,,3,1
+SHP0004,2025-06-08 12:57:53,Chennai,Jaipur,Ahmedabad,In Transit,4495,DTDC,2025-06-12 12:57:53,,4,0
+SHP0005,2025-06-09 17:57:53,Hyderabad,Surat,Bangalore,In Transit,4971,BlueDart,2025-06-12 17:57:53,Traffic,4,0
+SHP0006,2025-06-08 06:57:53,Delhi,Ahmedabad,Pune,Delivered,2481,FedEx,2025-06-11 06:57:53,Weather,1,0
+SHP0007,2025-06-12 16:57:53,Chennai,Surat,Bangalore,In Transit,1280,EcomExpress,2025-06-17 16:57:53,,1,0
+SHP0008,2025-06-13 05:57:53,Bangalore,Kolkata,Pune,Delivered,3182,BlueDart,2025-06-17 05:57:53,,3,1
+SHP0009,2025-06-07 21:57:53,Delhi,Pune,Hyderabad,In Transit,1582,EcomExpress,2025-06-12 21:57:53,Weather,5,1
+SHP0010,2025-06-12 07:57:53,Hyderabad,Jaipur,Delhi,Out for Delivery,1736,DTDC,2025-06-15 07:57:53,Incorrect Address,4,1
+SHP0011,2025-06-13 02:57:53,Delhi,Surat,Delhi,Delivered,960,EcomExpress,2025-06-18 02:57:53,Customs Delay,3,0
+SHP0012,2025-06-16 10:57:53,Mumbai,Pune,Hyderabad,Delivered,2743,DTDC,2025-06-21 10:57:53,Incorrect Address,3,1
+SHP0013,2025-06-09 18:57:53,Chennai,Kolkata,Jaipur,Delivered,1381,FedEx,2025-06-13 18:57:53,Incorrect Address,5,1
+SHP0014,2025-06-07 07:57:53,Bangalore,Ahmedabad,Delhi,Delivered,249,DTDC,2025-06-08 07:57:53,Incorrect Address,1,0
+SHP0015,2025-06-11 06:57:53,Delhi,Pune,Ahmedabad,In Transit,3834,BlueDart,2025-06-12 06:57:53,Traffic,2,0
+SHP0016,2025-06-09 22:57:53,Bangalore,Surat,Ahmedabad,Out for Delivery,4768,BlueDart,2025-06-13 22:57:53,Incorrect Address,1,0
+SHP0017,2025-06-08 18:57:53,Delhi,Pune,Jaipur,Out for Delivery,3273,FedEx,2025-06-12 18:57:53,Weather,5,0
+SHP0018,2025-06-14 05:57:53,Mumbai,Surat,Jaipur,In Transit,1508,FedEx,2025-06-18 05:57:53,Traffic,4,0
+SHP0019,2025-06-16 03:57:53,Chennai,Pune,Bangalore,In Transit,3886,DTDC,2025-06-19 03:57:53,Customs Delay,1,0
+SHP0020,2025-06-13 17:57:53,Hyderabad,Ahmedabad,Surat,In Transit,3469,BlueDart,2025-06-15 17:57:53,Customs Delay,5,0
+SHP0021,2025-06-07 13:57:53,Mumbai,Kolkata,Kolkata,Out for Delivery,3928,BlueDart,2025-06-11 13:57:53,Weather,4,1
+SHP0022,2025-06-16 18:57:53,Hyderabad,Ahmedabad,Ahmedabad,Out for Delivery,4466,FedEx,2025-06-21 18:57:53,Weather,2,0
+SHP0023,2025-06-13 08:57:53,Chennai,Jaipur,Chennai,Out for Delivery,1218,FedEx,2025-06-15 08:57:53,Traffic,3,0
+SHP0024,2025-06-11 21:57:53,Mumbai,Jaipur,Ahmedabad,Out for Delivery,3714,BlueDart,2025-06-14 21:57:53,Incorrect Address,1,1
+SHP0025,2025-06-17 21:57:53,Mumbai,Kolkata,Ahmedabad,Shipped,1753,BlueDart,2025-06-21 21:57:53,,2,1
+SHP0026,2025-06-09 12:57:53,Bangalore,Kolkata,Kolkata,Delivered,4269,DTDC,2025-06-10 12:57:53,Traffic,4,1
+SHP0027,2025-06-12 18:57:53,Delhi,Jaipur,Surat,Shipped,2406,DTDC,2025-06-14 18:57:53,Traffic,5,1
+SHP0028,2025-06-18 00:57:53,Bangalore,Jaipur,Hyderabad,Delivered,2213,FedEx,2025-06-20 00:57:53,Customs Delay,1,0
+SHP0029,2025-06-16 23:57:53,Hyderabad,Surat,Mumbai,Shipped,653,DTDC,2025-06-20 23:57:53,,3,1
+SHP0030,2025-06-11 07:57:53,Mumbai,Ahmedabad,Delhi,Out for Delivery,2282,DTDC,2025-06-14 07:57:53,,4,0
+SHP0031,2025-06-08 09:57:53,Chennai,Ahmedabad,Mumbai,Shipped,915,BlueDart,2025-06-10 09:57:53,Incorrect Address,1,0
+SHP0032,2025-06-14 02:57:53,Hyderabad,Kolkata,Pune,Out for Delivery,3142,FedEx,2025-06-15 02:57:53,Customs Delay,2,0
+SHP0033,2025-06-16 09:57:53,Hyderabad,Jaipur,Surat,In Transit,2088,DTDC,2025-06-21 09:57:53,Traffic,3,1
+SHP0034,2025-06-09 18:57:53,Delhi,Jaipur,Chennai,Delivered,2712,EcomExpress,2025-06-13 18:57:53,Weather,2,0
+SHP0035,2025-06-10 09:57:53,Mumbai,Kolkata,Ahmedabad,In Transit,4578,FedEx,2025-06-11 09:57:53,Traffic,4,0
+SHP0036,2025-06-12 05:57:53,Bangalore,Surat,Mumbai,Delivered,4480,FedEx,2025-06-13 05:57:53,Incorrect Address,1,1
+SHP0037,2025-06-13 10:57:53,Hyderabad,Ahmedabad,Surat,Shipped,2019,EcomExpress,2025-06-14 10:57:53,Weather,1,0
+SHP0038,2025-06-09 16:57:53,Chennai,Kolkata,Hyderabad,In Transit,2886,FedEx,2025-06-10 16:57:53,Traffic,5,0
+SHP0039,2025-06-12 17:57:53,Chennai,Jaipur,Bangalore,In Transit,2327,DTDC,2025-06-15 17:57:53,Weather,3,1
+SHP0040,2025-06-08 00:57:53,Hyderabad,Kolkata,Jaipur,Out for Delivery,4244,BlueDart,2025-06-10 00:57:53,Weather,5,0
+SHP0041,2025-06-13 20:57:53,Delhi,Ahmedabad,Kolkata,Out for Delivery,2042,BlueDart,2025-06-18 20:57:53,Weather,4,0
+SHP0042,2025-06-17 01:57:53,Mumbai,Jaipur,Surat,Shipped,2034,FedEx,2025-06-21 01:57:53,Traffic,5,0
+SHP0043,2025-06-11 15:57:53,Hyderabad,Jaipur,Pune,Shipped,2474,DTDC,2025-06-14 15:57:53,Incorrect Address,4,1
+SHP0044,2025-06-14 23:57:53,Delhi,Pune,Surat,Delivered,2841,DTDC,2025-06-15 23:57:53,Incorrect Address,5,1
+SHP0045,2025-06-10 08:57:53,Chennai,Jaipur,Chennai,In Transit,2308,EcomExpress,2025-06-15 08:57:53,Incorrect Address,5,0
+SHP0046,2025-06-18 05:57:53,Mumbai,Jaipur,Ahmedabad,Shipped,4689,FedEx,2025-06-21 05:57:53,Traffic,1,1
+SHP0047,2025-06-16 17:57:53,Mumbai,Jaipur,Hyderabad,In Transit,4530,EcomExpress,2025-06-20 17:57:53,Weather,2,1
+SHP0048,2025-06-17 08:57:53,Delhi,Kolkata,Pune,In Transit,3343,BlueDart,2025-06-21 08:57:53,Weather,4,1
+SHP0049,2025-06-12 05:57:53,Delhi,Ahmedabad,Surat,In Transit,4238,FedEx,2025-06-14 05:57:53,Incorrect Address,2,1
+SHP0050,2025-06-15 10:57:53,Chennai,Jaipur,Delhi,Out for Delivery,4061,DTDC,2025-06-16 10:57:53,Incorrect Address,1,1
+SHP0051,2025-06-18 00:57:53,Mumbai,Ahmedabad,Pune,Delivered,2518,EcomExpress,2025-06-19 00:57:53,Customs Delay,1,0
+SHP0052,2025-06-13 20:57:53,Bangalore,Pune,Mumbai,In Transit,1028,EcomExpress,2025-06-14 20:57:53,,1,0
+SHP0053,2025-06-13 22:57:53,Mumbai,Jaipur,Mumbai,In Transit,1333,BlueDart,2025-06-15 22:57:53,Incorrect Address,2,1
+SHP0054,2025-06-10 14:57:53,Delhi,Surat,Chennai,Delivered,1201,DTDC,2025-06-13 14:57:53,Incorrect Address,4,0
+SHP0055,2025-06-11 03:57:53,Bangalore,Kolkata,Hyderabad,Shipped,2564,BlueDart,2025-06-12 03:57:53,Incorrect Address,5,1
+SHP0056,2025-06-17 06:57:53,Hyderabad,Pune,Bangalore,Shipped,3087,EcomExpress,2025-06-22 06:57:53,Customs Delay,3,1
+SHP0057,2025-06-14 08:57:53,Hyderabad,Jaipur,Kolkata,Delivered,2621,BlueDart,2025-06-19 08:57:53,Customs Delay,3,0
+SHP0058,2025-06-07 11:57:53,Bangalore,Surat,Jaipur,Shipped,2860,FedEx,2025-06-10 11:57:53,Traffic,1,0
+SHP0059,2025-06-16 00:57:53,Hyderabad,Ahmedabad,Jaipur,Delivered,333,EcomExpress,2025-06-17 00:57:53,Incorrect Address,5,0
+SHP0060,2025-06-12 08:57:53,Hyderabad,Ahmedabad,Bangalore,Delivered,4717,DTDC,2025-06-15 08:57:53,,4,1
+SHP0061,2025-06-15 16:57:53,Mumbai,Surat,Ahmedabad,Delivered,1236,FedEx,2025-06-16 16:57:53,Weather,5,0
+SHP0062,2025-06-12 10:57:53,Chennai,Jaipur,Jaipur,Out for Delivery,237,BlueDart,2025-06-15 10:57:53,Incorrect Address,3,1
+SHP0063,2025-06-10 11:57:53,Bangalore,Surat,Chennai,In Transit,2625,BlueDart,2025-06-15 11:57:53,Customs Delay,3,0
+SHP0064,2025-06-07 05:57:53,Delhi,Ahmedabad,Mumbai,Out for Delivery,3287,FedEx,2025-06-08 05:57:53,Weather,4,0
+SHP0065,2025-06-10 10:57:53,Chennai,Ahmedabad,Chennai,Shipped,2665,FedEx,2025-06-12 10:57:53,,2,0
+SHP0066,2025-06-10 20:57:53,Bangalore,Surat,Pune,In Transit,3066,BlueDart,2025-06-14 20:57:53,Traffic,5,1
+SHP0067,2025-06-12 21:57:53,Mumbai,Kolkata,Kolkata,Out for Delivery,3533,DTDC,2025-06-14 21:57:53,Customs Delay,2,0
+SHP0068,2025-06-15 15:57:53,Chennai,Pune,Ahmedabad,Shipped,3848,FedEx,2025-06-19 15:57:53,Weather,5,1
+SHP0069,2025-06-12 16:57:53,Delhi,Surat,Chennai,Delivered,2142,FedEx,2025-06-13 16:57:53,Traffic,4,0
+SHP0070,2025-06-17 08:57:53,Delhi,Jaipur,Hyderabad,In Transit,3973,EcomExpress,2025-06-20 08:57:53,Incorrect Address,5,1
+SHP0071,2025-06-14 23:57:53,Bangalore,Pune,Ahmedabad,In Transit,2164,DTDC,2025-06-15 23:57:53,Traffic,2,0
+SHP0072,2025-06-10 16:57:53,Hyderabad,Kolkata,Ahmedabad,Out for Delivery,3608,DTDC,2025-06-14 16:57:53,Incorrect Address,4,0
+SHP0073,2025-06-09 16:57:53,Delhi,Surat,Delhi,Shipped,2345,BlueDart,2025-06-12 16:57:53,,4,0
+SHP0074,2025-06-07 12:57:53,Bangalore,Surat,Chennai,Delivered,509,FedEx,2025-06-11 12:57:53,Weather,2,0
+SHP0075,2025-06-12 16:57:53,Chennai,Surat,Bangalore,Delivered,533,DTDC,2025-06-15 16:57:53,Incorrect Address,5,0
+SHP0076,2025-06-07 21:57:53,Mumbai,Ahmedabad,Jaipur,Shipped,3281,BlueDart,2025-06-10 21:57:53,Incorrect Address,3,0
+SHP0077,2025-06-07 08:57:53,Chennai,Jaipur,Kolkata,Delivered,2503,BlueDart,2025-06-11 08:57:53,Incorrect Address,1,1
+SHP0078,2025-06-14 18:57:53,Hyderabad,Jaipur,Mumbai,In Transit,2652,DTDC,2025-06-16 18:57:53,Incorrect Address,2,0
+SHP0079,2025-06-10 03:57:53,Hyderabad,Surat,Ahmedabad,Shipped,3918,EcomExpress,2025-06-12 03:57:53,Customs Delay,1,0
+SHP0080,2025-06-10 11:57:53,Mumbai,Kolkata,Bangalore,Out for Delivery,4518,EcomExpress,2025-06-13 11:57:53,Traffic,3,1
+SHP0081,2025-06-14 10:57:53,Mumbai,Ahmedabad,Chennai,Delivered,4500,FedEx,2025-06-17 10:57:53,Customs Delay,2,0
+SHP0082,2025-06-15 13:57:53,Hyderabad,Pune,Ahmedabad,Delivered,2257,BlueDart,2025-06-18 13:57:53,Customs Delay,5,0
+SHP0083,2025-06-15 11:57:53,Delhi,Surat,Chennai,Out for Delivery,1050,FedEx,2025-06-17 11:57:53,Traffic,3,0
+SHP0084,2025-06-16 17:57:53,Delhi,Ahmedabad,Chennai,In Transit,1109,BlueDart,2025-06-18 17:57:53,,5,1
+SHP0085,2025-06-13 10:57:53,Bangalore,Pune,Chennai,Out for Delivery,4548,DTDC,2025-06-15 10:57:53,Customs Delay,4,1
+SHP0086,2025-06-10 18:57:53,Mumbai,Surat,Bangalore,Delivered,1069,EcomExpress,2025-06-13 18:57:53,,5,0
+SHP0087,2025-06-16 00:57:53,Hyderabad,Surat,Jaipur,Out for Delivery,4151,EcomExpress,2025-06-21 00:57:53,Weather,4,0
+SHP0088,2025-06-07 17:57:53,Hyderabad,Pune,Chennai,Delivered,4782,DTDC,2025-06-08 17:57:53,Weather,3,0
+SHP0089,2025-06-10 17:57:53,Hyderabad,Ahmedabad,Kolkata,In Transit,2880,EcomExpress,2025-06-11 17:57:53,Weather,5,1
+SHP0090,2025-06-11 14:57:53,Chennai,Surat,Ahmedabad,In Transit,4500,FedEx,2025-06-12 14:57:53,Traffic,3,1
+SHP0091,2025-06-15 11:57:53,Chennai,Jaipur,Delhi,In Transit,3322,DTDC,2025-06-18 11:57:53,Traffic,1,0
+SHP0092,2025-06-15 15:57:53,Mumbai,Kolkata,Ahmedabad,In Transit,3638,EcomExpress,2025-06-16 15:57:53,Weather,2,1
+SHP0093,2025-06-13 02:57:53,Mumbai,Pune,Ahmedabad,In Transit,1309,FedEx,2025-06-14 02:57:53,,1,0
+SHP0094,2025-06-12 01:57:53,Chennai,Ahmedabad,Ahmedabad,Shipped,2144,BlueDart,2025-06-14 01:57:53,Customs Delay,4,0
+SHP0095,2025-06-14 09:57:53,Chennai,Pune,Hyderabad,Delivered,4207,BlueDart,2025-06-16 09:57:53,Incorrect Address,3,0
+SHP0096,2025-06-14 15:57:53,Bangalore,Pune,Delhi,Delivered,4313,DTDC,2025-06-15 15:57:53,Traffic,5,0
+SHP0097,2025-06-10 22:57:53,Mumbai,Ahmedabad,Ahmedabad,Delivered,3520,EcomExpress,2025-06-15 22:57:53,Traffic,2,1
+SHP0098,2025-06-16 07:57:53,Hyderabad,Jaipur,Delhi,Delivered,2093,FedEx,2025-06-18 07:57:53,Traffic,1,1
+SHP0099,2025-06-15 16:57:53,Chennai,Kolkata,Ahmedabad,Shipped,983,BlueDart,2025-06-19 16:57:53,Incorrect Address,1,1
+SHP0100,2025-06-08 01:57:53,Mumbai,Jaipur,Bangalore,Shipped,1914,BlueDart,2025-06-09 01:57:53,,2,0
