@@ -3,15 +3,15 @@ import json
 import time
 from kafka import KafkaProducer
 
-# Load the CSV file
+
 df = pd.read_csv('C:\\Users\\palak\\OneDrive\\Desktop\\CLASS_MATERIAL_VIII\\PROGRESS\\PROJECTS\\TrackFlow-main\\TrackFlow-main\\simulator\\kafka_shipments.csv')
 # Create Kafka Producer
 producer = KafkaProducer(
-    bootstrap_servers='localhost:9092',  # ✅ Corrected from 0.0.0.0 to localhost
+    bootstrap_servers='localhost:9092',  
     value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
-# Send each row as a Kafka message
+
 for _, row in df.iterrows():
     msg = {
         "shipment_id": str(row['ID']),
@@ -28,9 +28,9 @@ for _, row in df.iterrows():
         "delivered": bool(row['Reached.on.Time_Y.N'] == 0)
     }
 
-    producer.send("shipments", value=msg)  # Sends to topic 'shipments'
+    producer.send("shipments", value=msg)  
     print(f"Sent: {msg}")
-    time.sleep(1)  # Wait between messages
+    time.sleep(1)  
 
-# Optional: flush to make sure all messages are delivered
+
 producer.flush()

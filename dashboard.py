@@ -46,20 +46,20 @@ def get_analytics_from_api():
 
 st.title("📦 Delivery Dashboard")
 
-# Get filter options
+
 statuses, carriers, cities = get_filter_options()
 
 if not statuses:
     st.warning('No shipment data found from API. Run your API server and producer.')
     st.stop()
 
-# Sidebar filters
+
 st.sidebar.header("Filters")
 selected_status = st.sidebar.multiselect('Status', options=statuses, default=statuses)
 selected_carrier = st.sidebar.multiselect('Carrier', options=carriers, default=carriers)
 selected_city = st.sidebar.multiselect('Current City', options=cities, default=cities)
 
-# Prepare params for API
+
 params = {}
 if selected_status != statuses:
     params['status'] = selected_status
@@ -73,7 +73,6 @@ if df.empty:
     st.warning("No shipments found for selected filters.")
     st.stop()
 
-# Analytics for KPIs
 analytics = get_analytics_from_api()
 kpi1, kpi2, kpi3 = st.columns(3)
 kpi1.metric("Total Shipments", analytics.get('total_shipments', len(df)))
@@ -83,7 +82,6 @@ kpi3.metric("On-Time Delivery (%)", f"{analytics.get('on_time_percent', 0):.1f}%
 st.subheader("Sample Shipments Data")
 st.dataframe(df.head(10), use_container_width=True)
 
-# Pie Chart: Shipment Status
 st.subheader("Shipment Status Distribution")
 status_counts = df['status'].value_counts()
 fig_pie = px.pie(
@@ -95,7 +93,6 @@ fig_pie = px.pie(
 )
 st.plotly_chart(fig_pie, use_container_width=True)
 
-# Bar Chart: Shipments by Source City
 st.subheader("Shipments Count by Source City")
 city_counts = df['source_city'].value_counts().reset_index()
 city_counts.columns = ['City', 'Shipments']
@@ -106,7 +103,6 @@ fig_bar = px.bar(
 )
 st.plotly_chart(fig_bar, use_container_width=True)
 
-# Delay Reason Analysis
 st.subheader("Delay Reason Comparison")
 delay_counts = df['delay_reason'].dropna().value_counts()
 fig_delay = px.bar(
@@ -117,7 +113,6 @@ fig_delay = px.bar(
 )
 st.plotly_chart(fig_delay, use_container_width=True)
 
-# Average Rating by Carrier
 st.subheader("Average Customer Rating by Carrier")
 avg_rating = df.groupby('carrier')['rating'].mean().reset_index()
 fig_rating = px.bar(
@@ -127,7 +122,6 @@ fig_rating = px.bar(
 )
 st.plotly_chart(fig_rating, use_container_width=True)
 
-# City-level Map
 st.subheader("Current Location of Shipments (City Map)")
 df['latitude'] = df['current_city'].map(lambda x: city_coords.get(x, [None, None])[0])
 df['longitude'] = df['current_city'].map(lambda x: city_coords.get(x, [None, None])[1])
