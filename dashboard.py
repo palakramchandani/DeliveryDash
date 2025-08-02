@@ -88,7 +88,6 @@ def get_analytics_from_api():
 st.title("📦 Delivery Dashboard")
 
 if USE_CSV_DATA:
-    st.info("🌐 Demo mode: using CSV dataset for 100% online dashboard reliability.")
     df = process_csv()
     statuses = sorted(df['status'].dropna().unique())
     carriers = sorted(df['carrier'].dropna().unique())
@@ -140,7 +139,7 @@ kpi1.metric("Total Shipments", total_shipments)
 kpi2.metric("Delivered (Count)", delivered_count)
 kpi3.metric("On-Time Delivery (%)", f"{on_time_pct:.1f}%")
 
-st.subheader("Sample Shipments Data")
+st.subheader("Shipments Data")
 st.dataframe(filtered_df.head(10), use_container_width=True)
 
 st.subheader("Shipment Status Distribution")
@@ -161,3 +160,4 @@ fig_bar = px.bar(
     city_counts, x='City', y='Shipments',
     color='Shipments', color_continuous_scale='Blues',
 )
+st.plotly_chart(fig_bar, use_container_width=True)
