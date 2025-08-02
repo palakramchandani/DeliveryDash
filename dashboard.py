@@ -1,10 +1,11 @@
+import os
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import pydeck as pdk
 import requests
 
-API_BASE = "http://localhost:5000"  
+API_BASE = "http://localhost:5000"
 
 city_coords = {
     'Delhi': [28.6139, 77.2090],
@@ -19,46 +20,83 @@ city_coords = {
     'Jaipur': [26.9124, 75.7873]
 }
 
+def is_streamlit_cloud():
+    # Streamlit Cloud sets this env var; locally it won't be set.
+    return os.environ.get('STREAMLIT_ENV') == 'cloud' or os.environ.get('STREAMPOD') == 'true'
+
 @st.cache_data
 def load_shipments_from_api(params=None):
-    res = requests.get(f"{API_BASE}/shipments", params=params)
-    if res.status_code != 200:
-        st.error("Could not fetch shipment data from API.")
+    try:
+        res = requests.get(f"{API_BASE}/shipments", params=params, timeout=6)
+        if res.status_code != 200:
+            return pd.DataFrame()
+        return pd.DataFrame(res.json())
+    except Exception as e:
         return pd.DataFrame()
-    return pd.DataFrame(res.json())
 
 @st.cache_data
 def get_filter_options():
-    res = requests.get(f"{API_BASE}/shipments")
-    df = pd.DataFrame(res.json())
-    if df.empty:
+    try:
+        res = requests.get(f"{API_BASE}/shipments", timeout=6)
+        df = pd.DataFrame(res.json())
+        if df.empty:
+            return [], [], []
+        return (
+            sorted(df['status'].dropna().unique()),
+            sorted(df['carrier'].dropna().unique()),
+            sorted(df['current_city'].dropna().unique()),
+        )
+    except Exception:
         return [], [], []
-    return (
-        sorted(df['status'].dropna().unique()),
-        sorted(df['carrier'].dropna().unique()),
-        sorted(df['current_city'].dropna().unique()),
-    )
 
 @st.cache_data
 def get_analytics_from_api():
-    res = requests.get(f"{API_BASE}/analytics")
-    return res.json() if res.status_code == 200 else {}
+    try:
+        res = requests.get(f"{API_BASE}/analytics", timeout=6)
+        return res.json() if res.status_code == 200 else {}
+    except Exception:
+        return {}
+
+def process_csv():
+    df = pd.read_csv("kafka_shipments.csv")
+    df = df.rename(columns={
+        "ID": "shipment_id",
+        "timestamp": "timestamp",
+        "source_city": "source_city",
+        "destination_city": "destination_city",
+        "current_city": "current_city",
+        "Mode_of_Shipment": "status",
+        "Weight_in_gms": "weight_kg",
+        "carrier": "carrier",
+        "estimated_delivery": "estimated_delivery",
+        "delay_reason": "delay_reason",
+        "Customer_rating": "rating",
+        "Reached.on.Time_Y.N": "delivered"
+    })
+    df["delivered"] = df["delivered"] == 1
+    df["weight_kg"] = round(df["weight_kg"] / 1000, 2)
+    return df
+
+if is_streamlit_cloud() or not os.path.exists("api.py"):
+    st.info("🌐 Running in demo mode (Streamlit Cloud or no API detected). Data loaded from sample CSV.\n\nFor full analytics, run locally with your backend API.")
+    df = process_csv()
+    statuses = sorted(df['status'].dropna().unique())
+    carriers = sorted(df['carrier'].dropna().unique())
+    cities = sorted(df['current_city'].dropna().unique())
+    analytics = {}  # No live analytics REST calls; use pandas below
+else:
+    statuses, carriers, cities = get_filter_options()
+    if not statuses:
+        st.warning('No shipment data found from API. Run your API server and producer, or use CSV for demo.')
+        st.stop()
+    analytics = get_analytics_from_api()
 
 st.title("📦 Delivery Dashboard")
-
-
-statuses, carriers, cities = get_filter_options()
-
-if not statuses:
-    st.warning('No shipment data found from API. Run your API server and producer.')
-    st.stop()
-
 
 st.sidebar.header("Filters")
 selected_status = st.sidebar.multiselect('Status', options=statuses, default=statuses)
 selected_carrier = st.sidebar.multiselect('Carrier', options=carriers, default=carriers)
 selected_city = st.sidebar.multiselect('Current City', options=cities, default=cities)
-
 
 params = {}
 if selected_status != statuses:
@@ -68,22 +106,38 @@ if selected_carrier != carriers:
 if selected_city != cities:
     params['city'] = selected_city
 
-df = load_shipments_from_api(params)
-if df.empty:
-    st.warning("No shipments found for selected filters.")
-    st.stop()
+if is_streamlit_cloud() or not os.path.exists("api.py"):
+    filtered_df = df[
+        df['status'].isin(selected_status) &
+        df['carrier'].isin(selected_carrier) &
+        df['current_city'].isin(selected_city)
+    ]
+else:
+    filtered_df = load_shipments_from_api(params)
+    if filtered_df.empty:
+        st.warning("No shipments found for selected filters.")
+        st.stop()
 
-analytics = get_analytics_from_api()
+
+if is_streamlit_cloud() or not analytics:
+    total_shipments = len(filtered_df)
+    delivered_count = filtered_df['delivered'].sum()
+    on_time_pct = 100 * delivered_count / total_shipments if total_shipments else 0
+else:
+    total_shipments = analytics.get('total_shipments', len(filtered_df))
+    delivered_count = analytics.get('delivered_shipments', int(filtered_df['delivered'].sum()))
+    on_time_pct = analytics.get('on_time_percent', 0)
+
 kpi1, kpi2, kpi3 = st.columns(3)
-kpi1.metric("Total Shipments", analytics.get('total_shipments', len(df)))
-kpi2.metric("Delivered (Count)", analytics.get('delivered_shipments', int(df['delivered'].sum())))
-kpi3.metric("On-Time Delivery (%)", f"{analytics.get('on_time_percent', 0):.1f}%")
+kpi1.metric("Total Shipments", total_shipments)
+kpi2.metric("Delivered (Count)", delivered_count)
+kpi3.metric("On-Time Delivery (%)", f"{on_time_pct:.1f}%")
 
 st.subheader("Sample Shipments Data")
-st.dataframe(df.head(10), use_container_width=True)
+st.dataframe(filtered_df.head(10), use_container_width=True)
 
 st.subheader("Shipment Status Distribution")
-status_counts = df['status'].value_counts()
+status_counts = filtered_df['status'].value_counts()
 fig_pie = px.pie(
     names=status_counts.index,
     values=status_counts.values,
@@ -94,7 +148,7 @@ fig_pie = px.pie(
 st.plotly_chart(fig_pie, use_container_width=True)
 
 st.subheader("Shipments Count by Source City")
-city_counts = df['source_city'].value_counts().reset_index()
+city_counts = filtered_df['source_city'].value_counts().reset_index()
 city_counts.columns = ['City', 'Shipments']
 fig_bar = px.bar(
     city_counts, x='City', y='Shipments',
@@ -104,7 +158,7 @@ fig_bar = px.bar(
 st.plotly_chart(fig_bar, use_container_width=True)
 
 st.subheader("Delay Reason Comparison")
-delay_counts = df['delay_reason'].dropna().value_counts()
+delay_counts = filtered_df['delay_reason'].dropna().value_counts()
 fig_delay = px.bar(
     x=delay_counts.index, y=delay_counts.values,
     labels={'x': 'Delay Reason', 'y': 'Count'},
@@ -114,7 +168,7 @@ fig_delay = px.bar(
 st.plotly_chart(fig_delay, use_container_width=True)
 
 st.subheader("Average Customer Rating by Carrier")
-avg_rating = df.groupby('carrier')['rating'].mean().reset_index()
+avg_rating = filtered_df.groupby('carrier')['rating'].mean().reset_index()
 fig_rating = px.bar(
     avg_rating, x='carrier', y='rating',
     color='rating', color_continuous_scale='Plasma',
@@ -123,9 +177,9 @@ fig_rating = px.bar(
 st.plotly_chart(fig_rating, use_container_width=True)
 
 st.subheader("Current Location of Shipments (City Map)")
-df['latitude'] = df['current_city'].map(lambda x: city_coords.get(x, [None, None])[0])
-df['longitude'] = df['current_city'].map(lambda x: city_coords.get(x, [None, None])[1])
-map_df = df.dropna(subset=['latitude', 'longitude'])
+filtered_df['latitude'] = filtered_df['current_city'].map(lambda x: city_coords.get(x, [None, None])[0])
+filtered_df['longitude'] = filtered_df['current_city'].map(lambda x: city_coords.get(x, [None, None])[1])
+map_df = filtered_df.dropna(subset=['latitude', 'longitude'])
 
 if not map_df.empty:
     layer = pdk.Layer(
@@ -148,4 +202,3 @@ if not map_df.empty:
 else:
     st.info("No shipment location data available for mapping.")
 
-st.info("🔄 Use the sidebar to filter the dashboard by status, carrier, or city! Data is now loaded via your Flask API for realism.")
