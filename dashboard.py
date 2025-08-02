@@ -160,3 +160,4 @@ city_counts.columns = ['City', 'Shipments']
 fig_bar = px.bar(
     city_counts, x='City', y='Shipments',
     color='Shipments', color_continuous_scale='Blues',
+)
